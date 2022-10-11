@@ -20,12 +20,17 @@ export const useTaskStore = defineStore('taskStore', {
       // return this.tasks.filter(task => task.isFav).length // // alternative way to count favs
     },
 
-    totalCount: (state) => {
-      return state.tasks.length
+    totalCount() {
+      return this.tasks.length
     }
+    // totalCount: (state) => {
+    //   return state.tasks.length
+    // } // arrow function alternative
   },
 
   actions: {
-
+    addTask(task) {
+      this.tasks.push(task)
+    },
   }
 })
