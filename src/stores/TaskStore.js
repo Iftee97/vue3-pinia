@@ -4,7 +4,8 @@ export const useTaskStore = defineStore('taskStore', {
   state: () => ({
     tasks: [
       { id: 1, title: "buy some milk", isFav: false },
-      { id: 2, title: "play Gloomhaven", isFav: true }
+      { id: 2, title: "play MarioCart", isFav: true },
+      { id: 3, title: "learn Vue 3 and Pinia", isFav: true },
     ],
   }),
 
@@ -32,5 +33,14 @@ export const useTaskStore = defineStore('taskStore', {
     addTask(task) {
       this.tasks.push(task)
     },
+
+    deleteTask(id) {
+      this.tasks = this.tasks.filter(task => task.id !== id)
+    },
+
+    toggleFav(id) {
+      const task = this.tasks.find(task => task.id === id)
+      task.isFav = !task.isFav
+    }
   }
 })
