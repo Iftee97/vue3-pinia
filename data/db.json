@@ -1,0 +1,20 @@
+{
+  "tasks": [
+    {
+      "id": 2,
+      "title": "mow the lawn",
+      "isFav": false
+    },
+    {
+      "title": "eat some pineapple",
+      "isFav": false,
+      "id": 4
+    },
+    {
+      "title": "do not eat pineapple on pizza",
+      "fav": false,
+      "id": 2432,
+      "isFav": true
+    }
+  ]
+}

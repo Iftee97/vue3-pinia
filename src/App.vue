@@ -17,6 +17,9 @@
       <button @click="filter = 'favs'">Fav Tasks</button>
     </div>
 
+    <!-- loading -->
+    <div class="loading" v-if="taskStore.loading">loading tasks...</div>
+
     <!-- task lists -->
     <div class="task-list" v-if="filter === 'all'">
       <p>You have {{ taskStore.totalCount }} tasks left to do</p>
@@ -51,6 +54,9 @@ export default {
     const taskStore = useTaskStore();
 
     const filter = ref("all");
+
+    // fetch tasks json server
+    taskStore.getTasks();
 
     return {
       taskStore,
