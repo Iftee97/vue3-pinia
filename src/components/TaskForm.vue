@@ -21,7 +21,7 @@ export default {
       if (newTask.value.length > 0) {
         taskStore.addTask({
           title: newTask.value,
-          fav: false,
+          isFav: false,
           id: Math.floor(Math.random() * 10000),
         });
         newTask.value = ""; // reset input

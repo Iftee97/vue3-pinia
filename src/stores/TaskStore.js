@@ -54,19 +54,6 @@ export const useTaskStore = defineStore('taskStore', {
     },
 
     async toggleFav(id) {
-      // const task = this.tasks.find(task => task.id === id)
-      // task.isFav = !task.isFav
-
-      // const res = await fetch('http://localhost:3000/tasks/' + id, {
-      //   method: 'PATCH',
-      //   body: JSON.stringify({ isFav: task.isFav }),
-      //   headers: { 'Content-Type': 'application/json' }
-      // })
-
-      // if (res.error) {
-      //   console.log(res.error)
-      // }
-
       const taskRef = doc(db, 'tasks', id)
       const taskSnap = await getDoc(taskRef)
       if (taskSnap.exists()) {
