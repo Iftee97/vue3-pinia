@@ -55,7 +55,6 @@ export default {
 
     const filter = ref("all");
 
-    // fetch tasks json server
     taskStore.getTasks();
 
     return {

@@ -1,5 +1,11 @@
 import { defineStore } from 'pinia'
 
+// firebase imports
+import { db } from '../firebase/config'
+import {
+  collection, addDoc, doc, deleteDoc, onSnapshot, getDoc, updateDoc
+} from "firebase/firestore";
+
 export const useTaskStore = defineStore('taskStore', {
   state: () => ({
     tasks: [],
@@ -13,71 +19,62 @@ export const useTaskStore = defineStore('taskStore', {
 
     favCount() {
       return this.tasks.filter(task => task.isFav).length
-      // return this.tasks.reduce((p, c) => {
-      //   return c.isFav ? p + 1 : p
-      // }, 0) // // alternative way to count favs
     },
 
     totalCount() {
       return this.tasks.length
     }
-    // totalCount: (state) => {
-    //   return state.tasks.length
-    // } // // arrow function alternative
   },
 
   actions: {
     async getTasks() {
       this.loading = true
-
-      // get data from json file using json server
-      const res = await fetch('http://localhost:3000/tasks')
-      const data = await res.json()
-
-      this.tasks = data
+      try {
+        const taskRef = collection(db, 'tasks')
+        onSnapshot(taskRef, (snapshot) => {
+          const results = snapshot.docs.map((doc) => ({
+            ...doc.data(),
+            id: doc.id
+          }))
+          this.tasks = results
+        })
+      } catch (error) {
+        console.log(error)
+      }
       this.loading = false
     },
 
     async addTask(task) {
-      this.tasks.push(task)
-
-      const res = await fetch('http://localhost:3000/tasks', {
-        method: 'POST',
-        body: JSON.stringify(task),
-        headers: { 'Content-Type': 'application/json' }
-      })
-
-      if (res.error) {
-        console.log(res.error)
-      }
+      const ref = collection(db, 'tasks')
+      await addDoc(ref, task)
     },
 
     async deleteTask(id) {
-      this.tasks = this.tasks.filter(task => {
-        return task.id !== id
-      })
-
-      const res = await fetch('http://localhost:3000/tasks/' + id, {
-        method: 'DELETE',
-      })
-
-      if (res.error) {
-        console.log(res.error)
-      }
+      await deleteDoc(doc(db, 'tasks', id))
     },
 
     async toggleFav(id) {
-      const task = this.tasks.find(task => task.id === id)
-      task.isFav = !task.isFav
+      // const task = this.tasks.find(task => task.id === id)
+      // task.isFav = !task.isFav
 
-      const res = await fetch('http://localhost:3000/tasks/' + id, {
-        method: 'PATCH',
-        body: JSON.stringify({ isFav: task.isFav }),
-        headers: { 'Content-Type': 'application/json' }
-      })
+      // const res = await fetch('http://localhost:3000/tasks/' + id, {
+      //   method: 'PATCH',
+      //   body: JSON.stringify({ isFav: task.isFav }),
+      //   headers: { 'Content-Type': 'application/json' }
+      // })
 
-      if (res.error) {
-        console.log(res.error)
+      // if (res.error) {
+      //   console.log(res.error)
+      // }
+
+      const taskRef = doc(db, 'tasks', id)
+      const taskSnap = await getDoc(taskRef)
+      if (taskSnap.exists()) {
+        await updateDoc(taskRef, {
+          isFav: !taskSnap.data().isFav
+        })
+      } else {
+        console.log('No such document!')
       }
     }
   }
