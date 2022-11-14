@@ -12,6 +12,10 @@
       </p>
       <a href="#" @click="logout" v-if="user">logout</a>
     </div>
+    <div class="notLoggedIn" v-else>
+      <p>you are not logged in</p>
+      <a href="#" @click="this.$router.push('/login')">login</a>
+    </div>
 
     <div class="filter">
       <button @click="filter = 'all'">All Tasks</button>

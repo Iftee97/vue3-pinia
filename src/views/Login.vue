@@ -11,6 +11,10 @@
       <input type="password" v-model="password" />
     </div>
     <button>login</button>
+    <p>
+      dont have an account?
+      <a href="#" @click="this.$router.push('/signup')">sign up</a>
+    </p>
   </form>
 </template>
 

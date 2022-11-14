@@ -16,6 +16,10 @@
     </div>
     <br />
     <button>signup</button>
+    <p>
+      already have an account?
+      <a href="#" @click="this.$router.push('/login')">login</a>
+    </p>
   </form>
 </template>
 

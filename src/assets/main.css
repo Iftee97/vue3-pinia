@@ -48,6 +48,14 @@ header h1 {
   justify-content: space-between;
 }
 
+.notLoggedIn {
+  max-width: 640px;
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .task {
   padding: 6px 20px;
   background: #fff;
