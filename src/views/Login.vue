@@ -3,16 +3,12 @@
     <h2>login</h2>
     <br />
     <div>
-      <label>
-        <span>email:</span>
-        <input type="email" v-model="email" />
-      </label>
+      <label> email: </label>
+      <input type="email" v-model="email" />
     </div>
     <div>
-      <label>
-        <span>password:</span>
-        <input type="password" v-model="password" />
-      </label>
+      <label> password: </label>
+      <input type="password" v-model="password" />
     </div>
     <button>login</button>
   </form>

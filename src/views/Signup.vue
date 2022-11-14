@@ -14,6 +14,7 @@
       <label> username: </label>
       <input type="text" v-model="displayName" />
     </div>
+    <br />
     <button>signup</button>
   </form>
 </template>
