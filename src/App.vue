@@ -1,10 +1,11 @@
 <template>
   <main>
     <!-- heading -->
-    <header>
+    <!-- <header>
       <img src="./assets/pinia-logo.svg" alt="pinia logo" />
       <h1>Pinia Tasks</h1>
-    </header>
+    </header> -->
+    <Navbar />
 
     <!-- new task form -->
     <div class="new-task-form">
@@ -38,6 +39,7 @@
 
 <script>
 import { ref } from "vue";
+import Navbar from "./components/Navbar.vue";
 import TaskDetails from "./components/TaskDetails.vue";
 import TaskForm from "./components/TaskForm.vue";
 import { useTaskStore } from "./stores/TaskStore";
@@ -46,6 +48,7 @@ export default {
   name: "App",
 
   components: {
+    Navbar,
     TaskDetails,
     TaskForm,
   },

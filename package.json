@@ -7,7 +7,7 @@
     "preview": "vite preview --port 4173"
   },
   "dependencies": {
-    "firebase": "^9.13.0",
+    "firebase": "^9.14.0",
     "pinia": "^2.0.23",
     "vue": "^3.2.38"
   },
