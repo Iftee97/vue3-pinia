@@ -1,20 +1,18 @@
 <template>
-  <form @submit.prevent="handleSubmit">
+  <form class="signup-form" @submit.prevent="handleSubmit">
     <h2>signup</h2>
-    <br />
-    <div>
-      <label> email: </label>
+    <label>
+      <span> email: </span>
       <input type="email" v-model="email" />
-    </div>
-    <div>
-      <label> password: </label>
+    </label>
+    <label>
+      <span> password: </span>
       <input type="password" v-model="password" />
-    </div>
-    <div>
-      <label> username: </label>
+    </label>
+    <label>
+      <span> username: </span>
       <input type="text" v-model="displayName" />
-    </div>
-    <br />
+    </label>
     <button>signup</button>
     <p>
       already have an account?
@@ -60,3 +58,32 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.signup-form {
+  max-width: 360px;
+  margin: 60px auto;
+  padding: 20px;
+}
+
+.signup-form label {
+  display: block;
+  margin: 30px auto;
+}
+
+.signup-form span {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.signup-form input {
+  padding: 8px 6px;
+  font-size: 1em;
+  color: #777;
+  width: 100%;
+}
+
+.signup-form button {
+  padding: 12px 16px;
+}
+</style>

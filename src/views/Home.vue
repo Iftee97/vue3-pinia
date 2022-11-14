@@ -81,3 +81,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.new-task-form {
+  background: #e7e7e7;
+  padding: 20px 0;
+}
+</style>
