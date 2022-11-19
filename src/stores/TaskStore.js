@@ -3,7 +3,13 @@ import { defineStore } from 'pinia'
 // firebase imports
 import { db } from '../firebase/config'
 import {
-  collection, addDoc, doc, deleteDoc, onSnapshot, getDoc, updateDoc
+  collection,
+  addDoc,
+  doc,
+  deleteDoc,
+  onSnapshot,
+  getDoc,
+  updateDoc
 } from "firebase/firestore"
 
 export const useTaskStore = defineStore('taskStore', {
