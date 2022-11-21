@@ -6,38 +6,39 @@
 
     <!-- {{ user && user.email }} -->
 
-    <div class="userContainer" v-if="user">
-      <p>
-        user: <strong>{{ user.email }}</strong>
-      </p>
-      <a href="#" @click="logout" v-if="user">logout</a>
-    </div>
-    <div class="notLoggedIn" v-else>
-      <p>you are not logged in</p>
-      <a href="#" @click="this.$router.push('/login')">login</a>
-    </div>
-
     <div class="loading" v-if="taskStore.loading">loading tasks...</div>
 
     <div v-if="user">
-      <div class="filter">
-        <button @click="filter = 'all'">All Tasks</button>
-        <button @click="filter = 'favs'">Fav Tasks</button>
+      <div class="userContainer">
+        <p>
+          user: <strong>{{ user.email }}</strong>
+        </p>
+        <a href="#" @click="logout">logout</a>
       </div>
 
-      <div class="task-list" v-if="filter === 'all'">
-        <p>You have {{ taskStore.totalCount }} tasks left to do</p>
-        <div v-for="task in taskStore.tasks" :key="task.id">
-          <TaskDetails :task="task" />
+      <div>
+        <div class="filter">
+          <button @click="filter = 'all'">All Tasks</button>
+          <button @click="filter = 'favs'">Fav Tasks</button>
+        </div>
+        <div class="task-list" v-if="filter === 'all'">
+          <p>You have {{ taskStore.totalCount }} tasks left to do</p>
+          <div v-for="task in taskStore.tasks" :key="task.id">
+            <TaskDetails :task="task" />
+          </div>
+        </div>
+        <div class="task-list" v-if="filter === 'favs'">
+          <p>You have {{ taskStore.favCount }} fav tasks left to do</p>
+          <div v-for="(task, index) in taskStore.favs" :key="index">
+            <TaskDetails :task="task" />
+          </div>
         </div>
       </div>
+    </div>
 
-      <div class="task-list" v-if="filter === 'favs'">
-        <p>You have {{ taskStore.favCount }} fav tasks left to do</p>
-        <div v-for="(task, index) in taskStore.favs" :key="index">
-          <TaskDetails :task="task" />
-        </div>
-      </div>
+    <div class="notLoggedIn" v-else>
+      <p>you are not logged in</p>
+      <a href="#" @click="this.$router.push('/login')">login</a>
     </div>
   </div>
 </template>
