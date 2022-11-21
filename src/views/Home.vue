@@ -4,9 +4,9 @@
       <TaskForm />
     </div>
 
-    <!-- {{ user && user.email }} -->
-
     <div class="loading" v-if="taskStore.loading">loading tasks...</div>
+
+    <!-- {{ user && user.email }} -->
 
     <div v-if="user">
       <div class="userContainer">
