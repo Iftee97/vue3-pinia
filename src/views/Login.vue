@@ -78,5 +78,6 @@ export default {
 
 .login-form button {
   padding: 12px 16px;
+  font-size: 1rem;
 }
 </style>

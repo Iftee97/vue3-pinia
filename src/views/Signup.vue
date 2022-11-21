@@ -85,5 +85,6 @@ export default {
 
 .signup-form button {
   padding: 12px 16px;
+  font-size: 1rem;
 }
 </style>
