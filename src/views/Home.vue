@@ -15,7 +15,6 @@
         </p>
         <a href="#" @click="logout">logout</a>
       </div>
-
       <div>
         <div class="filter">
           <button @click="filter = 'all'">All Tasks</button>
