@@ -17,23 +17,26 @@
       <a href="#" @click="this.$router.push('/login')">login</a>
     </div>
 
-    <div class="filter">
-      <button @click="filter = 'all'">All Tasks</button>
-      <button @click="filter = 'favs'">Fav Tasks</button>
-    </div>
-
     <div class="loading" v-if="taskStore.loading">loading tasks...</div>
 
-    <div class="task-list" v-if="filter === 'all'">
-      <p>You have {{ taskStore.totalCount }} tasks left to do</p>
-      <div v-for="task in taskStore.tasks" :key="task.id">
-        <TaskDetails :task="task" />
+    <div v-if="user">
+      <div class="filter">
+        <button @click="filter = 'all'">All Tasks</button>
+        <button @click="filter = 'favs'">Fav Tasks</button>
       </div>
-    </div>
-    <div class="task-list" v-if="filter === 'favs'">
-      <p>You have {{ taskStore.favCount }} fav tasks left to do</p>
-      <div v-for="(task, index) in taskStore.favs" :key="index">
-        <TaskDetails :task="task" />
+
+      <div class="task-list" v-if="filter === 'all'">
+        <p>You have {{ taskStore.totalCount }} tasks left to do</p>
+        <div v-for="task in taskStore.tasks" :key="task.id">
+          <TaskDetails :task="task" />
+        </div>
+      </div>
+
+      <div class="task-list" v-if="filter === 'favs'">
+        <p>You have {{ taskStore.favCount }} fav tasks left to do</p>
+        <div v-for="(task, index) in taskStore.favs" :key="index">
+          <TaskDetails :task="task" />
+        </div>
       </div>
     </div>
   </div>
@@ -63,8 +66,6 @@ export default {
     const filter = ref("all");
     const authIsReady = computed(() => authStore.authIsReady);
     const user = computed(() => authStore.user);
-
-    taskStore.getTasks();
 
     const logout = () => {
       authStore.logout();

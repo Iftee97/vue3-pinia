@@ -45,7 +45,7 @@ export default {
         });
         router.push("/"); // redirects to the homepage
       } catch (err) {
-        error.value = err.message;
+        console.log(err.message);
       }
     };
 
