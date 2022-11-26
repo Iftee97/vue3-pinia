@@ -56,8 +56,8 @@ export default {
     const filter = ref("all");
     const user = computed(() => authStore.user);
 
-    const logout = () => {
-      authStore.logout();
+    const logout = async () => {
+      await authStore.logout();
       router.push("/login");
     };
 
