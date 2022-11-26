@@ -23,11 +23,27 @@ const routes = [
     path: '/signup',
     name: 'Signup',
     component: Signup,
+    beforeEnter: (to, from, next) => {
+      let user = JSON.parse(localStorage.getItem('user'))
+      if (user) {
+        next({ name: 'Home' })
+      } else {
+        next()
+      }
+    }
   },
   {
     path: '/login',
     name: 'Login',
     component: Login,
+    beforeEnter: (to, from, next) => {
+      let user = JSON.parse(localStorage.getItem('user'))
+      if (user) {
+        next({ name: 'Home' })
+      } else {
+        next()
+      }
+    }
   }
 ]
 
