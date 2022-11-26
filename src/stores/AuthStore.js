@@ -11,17 +11,19 @@ import {
 
 export const useAuthStore = defineStore('authStore', {
   state: () => ({
-    user: null,
+    user: JSON.parse(localStorage.getItem("user")) || null,
     showNavbar: false, // might need later
   }),
 
   actions: {
     init() {
-      onAuthStateChanged(auth, (user) => {
-        this.user = user
-        localStorage.setItem('user', JSON.stringify(this.user))
-        console.log('user:', this.user)
-      })
+      // onAuthStateChanged(auth, (user) => {
+      //   this.user = user
+      //   localStorage.setItem('user', JSON.stringify(this.user))
+      //   console.log('user:', this.user)
+      // })
+      localStorage.setItem('user', JSON.stringify(this.user))
+      console.log('user:', this.user)
     },
 
     async signup({ email, password }) {
