@@ -12,18 +12,14 @@ import {
 export const useAuthStore = defineStore('authStore', {
   state: () => ({
     user: null,
-    authIsReady: false,
     showNavbar: false, // might need later
-    loading: false
   }),
 
   actions: {
     init() {
-      this.loading = true
       onAuthStateChanged(auth, (user) => {
         this.user = user
-        this.authIsReady = true
-        this.loading = false
+        localStorage.setItem('user', JSON.stringify(this.user))
         console.log('user:', this.user)
       })
     },
@@ -32,6 +28,7 @@ export const useAuthStore = defineStore('authStore', {
       const response = await createUserWithEmailAndPassword(auth, email, password)
       if (response) {
         this.user = response.user
+        localStorage.setItem('user', JSON.stringify(this.user))
       } else {
         throw new Error('could not sign up')
       }
@@ -41,6 +38,7 @@ export const useAuthStore = defineStore('authStore', {
       const response = await signInWithEmailAndPassword(auth, email, password)
       if (response) {
         this.user = response.user
+        localStorage.setItem('user', JSON.stringify(this.user))
       } else {
         throw new Error('could not login')
       }
@@ -49,6 +47,7 @@ export const useAuthStore = defineStore('authStore', {
     async logout() {
       await signOut(auth)
       this.user = null
+      localStorage.setItem('user', JSON.stringify(this.user))
     },
 
     toggleNavbar() {

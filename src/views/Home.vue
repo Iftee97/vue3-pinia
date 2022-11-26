@@ -1,43 +1,33 @@
 <template>
   <div>
-    <div class="new-task-form" v-if="authIsReady">
-      <TaskForm />
-    </div>
-
-    <div class="loading" v-if="taskStore.loading">loading tasks...</div>
-
-    <!-- {{ user && user.email }} -->
-
-    <div v-if="user">
-      <div class="userContainer">
+    <div style="background: #e7e7e7">
+      <TaskForm style="margin-bottom: 1rem" />
+      <div class="userContainer" v-if="user">
         <p>
-          user: <strong>{{ user.email }}</strong>
+          <strong>{{ user.email }}</strong>
         </p>
+        <span> | </span>
         <a href="#" @click="logout">logout</a>
       </div>
-      <div>
-        <div class="filter">
-          <button @click="filter = 'all'">All Tasks</button>
-          <button @click="filter = 'favs'">Fav Tasks</button>
-        </div>
-        <div class="task-list" v-if="filter === 'all'">
-          <p>You have {{ taskStore.totalCount }} tasks left to do</p>
-          <div v-for="task in taskStore.tasks" :key="task.id">
-            <TaskDetails :task="task" />
-          </div>
-        </div>
-        <div class="task-list" v-if="filter === 'favs'">
-          <p>You have {{ taskStore.favCount }} fav tasks left to do</p>
-          <div v-for="(task, index) in taskStore.favs" :key="index">
-            <TaskDetails :task="task" />
-          </div>
-        </div>
-      </div>
     </div>
 
-    <div class="notLoggedIn" v-else>
-      <p>you are not logged in</p>
-      <a href="#" @click="this.$router.push('/login')">login</a>
+    <div v-if="user">
+      <div class="filter">
+        <button @click="filter = 'all'">All Tasks</button>
+        <button @click="filter = 'favs'">Fav Tasks</button>
+      </div>
+      <div class="task-list" v-if="filter === 'all'">
+        <p>You have {{ taskStore.totalCount }} tasks left to do</p>
+        <div v-for="task in taskStore.tasks" :key="task.id">
+          <TaskDetails :task="task" />
+        </div>
+      </div>
+      <div class="task-list" v-if="filter === 'favs'">
+        <p>You have {{ taskStore.favCount }} fav tasks left to do</p>
+        <div v-for="(task, index) in taskStore.favs" :key="index">
+          <TaskDetails :task="task" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -64,7 +54,6 @@ export default {
     const router = useRouter();
 
     const filter = ref("all");
-    const authIsReady = computed(() => authStore.authIsReady);
     const user = computed(() => authStore.user);
 
     const logout = () => {
@@ -76,7 +65,6 @@ export default {
       taskStore,
       filter,
       user,
-      authIsReady,
       logout,
     };
   },
@@ -84,8 +72,16 @@ export default {
 </script>
 
 <style scoped>
-.new-task-form {
-  background: #e7e7e7;
-  padding: 20px 0;
+.userContainer {
+  max-width: 640px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.taskForm {
+  margin-bottom: 8px;
 }
 </style>

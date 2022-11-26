@@ -10,11 +10,10 @@ body * {
   font-family: "Poppins";
 }
 
-/* header */
 header {
   text-align: center;
   background: #e7e7e7;
-  padding-top: 20px;
+  padding: 20px 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,27 +34,9 @@ header h1 {
   transform: rotate(2deg);
 }
 
-/* task list */
 .task-list {
   max-width: 640px;
   margin: 20px auto;
-}
-
-.userContainer {
-  max-width: 640px;
-  margin: 20px auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.notLoggedIn {
-  max-width: 640px;
-  margin: 20px auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
 }
 
 .task {
@@ -89,7 +70,6 @@ header h1 {
   color: #ff005d;
 }
 
-/* filter nav */
 .filter {
   width: 640px;
   margin: 10px auto;

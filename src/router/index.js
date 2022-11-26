@@ -3,11 +3,8 @@ import Home from '../views/Home.vue'
 import Signup from '../views/Signup.vue'
 import Login from '../views/Login.vue'
 
-// firebase imports
-import { auth } from '../firebase/config'
-
 const requireAuth = (to, from, next) => {
-  let user = auth.currentUser
+  let user = JSON.parse(localStorage.getItem('user'))
   if (!user) {
     next({ name: 'Login' })
   } else {
@@ -25,12 +22,12 @@ const routes = [
   {
     path: '/signup',
     name: 'Signup',
-    component: Signup
+    component: Signup,
   },
   {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: Login,
   }
 ]
 
