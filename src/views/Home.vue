@@ -80,8 +80,4 @@ export default {
   justify-content: center;
   gap: 8px;
 }
-
-.taskForm {
-  margin-bottom: 8px;
-}
 </style>
