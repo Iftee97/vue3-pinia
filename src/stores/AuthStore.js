@@ -17,13 +17,13 @@ export const useAuthStore = defineStore('authStore', {
 
   actions: {
     init() {
-      // onAuthStateChanged(auth, (user) => {
-      //   this.user = user
-      //   localStorage.setItem('user', JSON.stringify(this.user))
-      //   console.log('user:', this.user)
-      // })
-      localStorage.setItem('user', JSON.stringify(this.user))
-      console.log('user:', this.user)
+      onAuthStateChanged(auth, (user) => {
+        this.user = user
+        localStorage.setItem('user', JSON.stringify(this.user))
+        console.log('user:', this.user)
+      })
+      // localStorage.setItem('user', JSON.stringify(this.user))
+      // console.log('user:', this.user)
     },
 
     async signup({ email, password }) {
