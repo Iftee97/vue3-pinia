@@ -17,18 +17,21 @@ export default {
     Navbar,
   },
 
-  setup() {
-    const taskStore = useTaskStore();
-    taskStore.getTasks();
+  // setup() {
+  //   const taskStore = useTaskStore();
+  //   taskStore.getTasks();
 
-    return {
-      taskStore,
-    };
-  },
+  //   return {
+  //     taskStore,
+  //   };
+  // },
 
   mounted() {
     const authStore = useAuthStore();
     authStore.init();
+
+    const taskStore = useTaskStore();
+    taskStore.getTasks(); // gets all tasks when the component mounts
   },
 };
 </script>
