@@ -17,15 +17,6 @@ export default {
     Navbar,
   },
 
-  // setup() {
-  //   const taskStore = useTaskStore();
-  //   taskStore.getTasks();
-
-  //   return {
-  //     taskStore,
-  //   };
-  // },
-
   mounted() {
     const authStore = useAuthStore();
     authStore.init();
