@@ -22,8 +22,6 @@ export const useAuthStore = defineStore('authStore', {
         localStorage.setItem('user', JSON.stringify(this.user))
         console.log('user:', this.user)
       })
-      // localStorage.setItem('user', JSON.stringify(this.user))
-      // console.log('user:', this.user)
     },
 
     async signup({ email, password }) {
